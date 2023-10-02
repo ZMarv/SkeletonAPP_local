@@ -1,0 +1,50 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding " [fullscreen]="true">
+  <ion-text>
+    <h1 class="ion-text-center">SkeletonAPP</h1>
+    <p class="ion-text-center">Aquí comienza todo</p>
+  </ion-text>
+
+  <div class="ion-padding center">
+    <h3 class="ion-text-center">Bienvenido!</h3>
+    <ion-input
+          type="text"
+          fill="solid"
+          label="Usuario"
+          labelPlacement="floating"
+          helperText="Ingrese usuario"
+          errorText="Usuario inválido"
+          [(ngModel)]="usuario"
+          [counter]="true"
+          maxlength="8"
+          minlength="3"
+          required
+        ></ion-input>
+        <ion-input
+          type="password"
+          fill="solid"
+          label="Contraseña"
+          labelPlacement="floating"
+          helperText="Ingrese contraseña"
+          errorText="Contraseña inválida"
+          [(ngModel)]="contrasenia"
+          password
+          pattern="[0-9]*"
+          minlength="4"
+          maxlength="4"
+          required
+        ></ion-input>
+
+        <div class="ion-padding">
+          <!-- <ion-button (click)="guardar()" expand="block"  [disabled]="usuario.length < 3 || usuario.length > 8 || contrasenia.invalid || contrasenia.value.length !== 4">Ingresar</ion-button> -->
+          <ion-button (click)="guardar()" expand="block" [disabled]="!usuario || !contrasenia">Ingresar</ion-button>
+          <!-- <ion-button (click)="guardar()" expand="block">Ingresar</ion-button> -->
+        </div>
+    </div>  
+</ion-content>
+

@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-text>
+    <h1 class="ion-text-center">Registro</h1>
+  </ion-text>
+
+  <div class="ion-padding center">
+    <ion-input
+          type="text"
+          fill="solid"
+          label="Usuario"
+          labelPlacement="floating"
+          helperText="Ingrese usuario"
+          errorText="Usuario inválido"
+          [(ngModel)]="usuario"
+          [counter]="true"
+          maxlength="8"
+          minlength="3"
+          required
+      ></ion-input>
+      <ion-input
+          type="password"
+          fill="solid"
+          label="Contraseña"
+          labelPlacement="floating"
+          helperText="Ingrese contraseña"
+          errorText="Contraseña inválida"
+          [(ngModel)]="contrasenia"
+          pattern="[0-9]*"
+          minlength="4"
+          maxlength="4"
+          required
+      ></ion-input>
+  </div>
+
+  <!-- <ion-item>
+    <ion-label position="floating">Nombre de usuario</ion-label>
+    <ion-input [(ngModel)]="usuario" type="text" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input [(ngModel)]="contrasenia" type="password" required></ion-input>
+  </ion-item> -->
+
+  <div class="ion-padding">
+    <ion-button expand="full" (click)="registro()">Registrar</ion-button>
+  </div>
+</ion-content>
