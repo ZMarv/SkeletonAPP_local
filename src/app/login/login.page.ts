@@ -3,12 +3,14 @@ import type { QueryList } from '@angular/core';
 import type { Animation } from '@ionic/angular';
 import { AlertController, AnimationController, IonInput, ModalController } from '@ionic/angular';
 import { LocalService } from '../services/local.service';
+import { HttpClient } from '@angular/common/http';
 
 import { Usuario } from '../models/usuario';
 
 import { Router } from '@angular/router';
 import {MatInput} from '@angular/material/input';
 import { ActivatedRoute } from '@angular/router';
+import { RegionesService } from '../services/regiones.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -21,13 +23,18 @@ export class LoginPage implements OnInit {
   @ViewChild('fechaNacimiento', { read: MatInput }) fechaNacimiento!: MatInput;
   // @ViewChild('checkBoxVencimiento') checkBoxVencimiento: any;
 
+  regiones: any[] = [];
+  regionSeleccionada: any;
+
   private animacionInputs!: Animation;
 
   constructor(private alertController: AlertController,
     private animationCtrl: AnimationController,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private localService: LocalService) {}
+    private localService: LocalService,
+    private regionesService: RegionesService,
+    private http: HttpClient) {}
     usuario:string ='';
     contrasenia: number | null = null;
     nombre: string = '';
@@ -53,6 +60,7 @@ export class LoginPage implements OnInit {
     // if (this.compartirDatosService.usuario) {
     //   this.usuario = this.compartirDatosService.usuario;
     // }
+    this.obtenerRegiones();
 
   }
   limpiar() {
@@ -82,6 +90,16 @@ export class LoginPage implements OnInit {
     .fromTo('transform', 'translateX(0px)', 'translateX(100%)')
     .fromTo('opacity', '1', '0.2');
 
+  }
+  obtenerRegiones() {
+    this.regionesService.obtenerRegiones().subscribe(
+      (data) => {
+        this.regiones = data.data;
+      },
+      (error) => {
+        console.error('Error no se pueden obtener las regiones: ', error);
+      }
+    );
   }
 
   ejecutarAnimacion() {

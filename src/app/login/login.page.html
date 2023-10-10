@@ -43,6 +43,12 @@
             <ion-select-option value="es">Enseñanza Superior</ion-select-option>
           </ion-select>
         </ion-item>
+        <ion-item>
+          
+          <ion-select label="Región" placeholder="Seleccione región" [(ngModel)]="regionSeleccionada">
+            <ion-select-option *ngFor="let region of regiones" [value]="region.id">{{ region?.nombre }}</ion-select-option>
+          </ion-select>
+        </ion-item>
   
         <ion-item>
           <!-- <ion-label>Fecha Nacimiento</ion-label> -->
